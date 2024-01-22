@@ -5,6 +5,7 @@ using PizzaStore.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddDbContext<PizzaDb>(options => options.UseInMemoryDatabase("items"));
 builder.Services.AddSwaggerGen(c =>
 {
      c.SwaggerDoc("v1", new OpenApiInfo {
@@ -21,5 +22,5 @@ app.UseSwaggerUI(c =>
 });
 
 app.MapGet("/", () => "Hello World!");
-
+app.MapGet("/pizzas", async (PizzaDb db) => await db.Pizzas.ToListAsync());
 app.Run();
