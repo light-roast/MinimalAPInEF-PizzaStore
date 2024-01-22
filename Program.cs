@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using PizzaStore.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
